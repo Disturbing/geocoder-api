@@ -19,8 +19,7 @@ paths:
       parameters:
       - name: "location"
         in: "query"
-        description: "A string value of the location you are geocoding. See 
-https://developers.google.com/maps/faq#geocoder_queryformat\
+        description: "A string value of the location you are geocoding. See  https://developers.google.com/maps/faq#geocoder_queryformat\
           \ for reference."
         required: false
         type: "string"
@@ -36,8 +35,7 @@ https://developers.google.com/maps/faq#geocoder_queryformat\
         description: "A string value denoting a bounding box to focus the search within.\
           \ The bounds parameter defines the latitude/longitude coordinates of the\
           \ southwest and northeast corners of this bounding box using a pipe (|)\
-          \ character to separate the coordinates. See 
-https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
+          \ character to separate the coordinates. See  https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
           \ for reference."
         required: false
         type: "string"
@@ -54,5 +52,87 @@ https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
         200:
           description: "OK"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
-definitions: {}
-
+definitions:
+  GeoCodes:
+    type: "object"
+    required:
+    - "list_of_GeoCode"
+    properties:
+      list_of_GeoCode:
+        type: "array"
+        items:
+          $ref: "#/definitions/GeoCode"
+  GeoCode:
+    type: "object"
+    properties:
+      accuracy:
+        type: "string"
+      address:
+        type: "string"
+      bbox:
+        $ref: "#/definitions/BBox"
+      city:
+        type: "string"
+      confidence:
+        type: "integer"
+      country:
+        type: "string"
+      county:
+        type: "string"
+      housenumber:
+        type: "string"
+      lat:
+        type: "number"
+      lon:
+        type: "number"
+      neighborhood:
+        type: "string"
+      ok:
+        type: "boolean"
+      place:
+        type: "string"
+      postal:
+        type: "string"
+      postal_town:
+        type: "string"
+      quality:
+        type: "string"
+      state:
+        type: "string"
+      status:
+        type: "string"
+      street:
+        type: "string"
+      sublocality:
+        type: "string"
+      subpremise:
+        type: "string"
+  BBox:
+    type: "object"
+    properties:
+      northeast:
+        type: "array"
+        items:
+          type: "number"
+          description: "array of [latitude, longitude]"
+      southwest:
+        type: "array"
+        items:
+          type: "number"
+          description: "array of [latitude, longitude]"
+  Error:
+    type: "object"
+    required:
+    - "detail"
+    - "status"
+    - "title"
+    - "type"
+    properties:
+      detail:
+        type: "string"
+      status:
+        type: "integer"
+      title:
+        type: "string"
+      type:
+        type: "string"
