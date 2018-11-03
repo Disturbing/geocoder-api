@@ -13,7 +13,7 @@ paths:
     get:
       summary: "Get the latitude and longitude of an address"
       description: "Gets an object containing the lattitude and longitude of a street address"
-      operationId: "get_latitude"
+      operationId: "get_locate"
       produces:
       - "application/json"
       parameters: 
