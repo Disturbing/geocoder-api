@@ -21,7 +21,7 @@ paths:
         in: "query"
         description: "A string value of the location you are geocoding. See  https://developers.google.com/maps/faq#geocoder_queryformat\
           \ for reference."
-        required: false
+        required: true
         type: "string"
       - name: "region"
         in: "query"
@@ -35,19 +35,25 @@ paths:
         description: "A string value denoting a bounding box to focus the search within.\
           \ The bounds parameter defines the latitude/longitude coordinates of the\
           \ southwest and northeast corners of this bounding box using a pipe (|)\
-          \ character to separate the coordinates. See  https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
-          \ for reference."
+          \ character to separate the coordinates. See  https://developers.google.com/maps/documentation/geocoding/intro#Viewports"
         required: false
-        type: "string"
+        type: "array"
+        collectionFormat: "pipes"
+        items:
+          type: "string"
+        maxItems: 2
+        minItems: 2
       - name: "components"
         in: "query"
-        description: "A string value restricting the search to a specified area. A\
-          \ filter consists of a list of component:value pairs separated by a pipe\
-          \ (|). Available filters are postal_code, country, route, locality, administrative_area.\
+        description: "A list of string values specifying component restrictions.
+          \ Available filters are postal_code, country, route, locality, administrative_area.\
           \ See https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering\
           \ for reference."
         required: false
-        type: "string"
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "pipes"
       responses:
         200:
           description: "OK"
