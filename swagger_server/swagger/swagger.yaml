@@ -58,6 +58,23 @@ paths:
         200:
           description: "OK"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
+  /reverse:
+    get:
+      summary: "Reverse geocoding"
+      description: "Does reverse geocoding"
+      operationId: "get_reverse"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "latlong"
+        in: "query"
+        description: "The latitude/longitude pair to resolve."
+        required: true
+        type: "string"      
+      responses:
+        200:
+          description: "OK"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   GeoCodes:
     type: "object"
