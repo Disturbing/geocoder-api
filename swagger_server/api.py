@@ -1,4 +1,4 @@
-from swagger_server.custom import CustomGoogleQuery
+from swagger_server.custom import CustomGoogleQuery, CustomGoogleReverseQuery
 from swagger_server import util
 
 import geocoder 
@@ -15,7 +15,11 @@ class GeocoderApi(object):
         print(g.url)
         return g.json
 
-    def get_reverse_locate(self, latlong):
-        g = geocoder.google(latlong.split(','), method='reverse')
+    def get_reverse_locate(self, latlong, result_type=None):
+        customArgs = {
+            "result_type": (result_type or None) and "|".join(map(str, result_type))
+        }
+
+        g = CustomGoogleReverseQuery(latlong.split(','), **customArgs)
         print(g.url)
         return g.json
