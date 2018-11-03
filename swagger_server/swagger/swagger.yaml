@@ -93,60 +93,60 @@ definitions:
           $ref: "#/definitions/GeoCode"
     example:
       list_of_GeoCode:
-      - country: "country"
-        address: "address"
-        postal_town: "postal_town"
-        city: "city"
+      - country: "US"
+        address: "Santa Cruz, CA, USA"
+        postal_town: "None"
+        city: "Santa Cruz"
         bbox:
           southwest:
-          - 6.02745618307040320615897144307382404804229736328125
-          - 6.02745618307040320615897144307382404804229736328125
+          - 37.0108489
+          - -121.9862189
           northeast:
-          - 0.80082819046101150206595775671303272247314453125
-          - 0.80082819046101150206595775671303272247314453125
-        confidence: 1
-        county: "county"
-        sublocality: "sublocality"
-        accuracy: "accuracy"
-        lon: 5.63737665663332876420099637471139430999755859375
-        subpremise: "subpremise"
-        quality: "quality"
-        housenumber: "housenumber"
-        street: "street"
-        neighborhood: "neighborhood"
-        place: "place"
-        postal: "postal"
-        state: "state"
+          - 36.9409339
+          - -122.1087411
+        confidence: 4
+        county: "Santa Cruz County"
+        sublocality: "None"
+        accuracy: "APPROXIMATE"
+        lng: -122.0307963
+        subpremise: "None"
+        quality: "locality"
+        housenumber: "None"
+        street: "None"
+        neighborhood: "None"
+        place: "ChIJSdU2fBtEjoARhfnXKksQylI"
+        postal: "None"
+        state: "CA"
         ok: true
-        lat: 5.962133916683182377482808078639209270477294921875
-        status: "status"
-      - country: "country"
-        address: "address"
-        postal_town: "postal_town"
-        city: "city"
+        lat: 36.9741171
+        status: "OK"
+      - country: "US"
+        address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA"
+        postal_town: "None"
+        city: "Mountain View"
         bbox:
           southwest:
-          - 6.02745618307040320615897144307382404804229736328125
-          - 6.02745618307040320615897144307382404804229736328125
+          - 37.4212440197085
+          - -122.0867475802915
           northeast:
-          - 0.80082819046101150206595775671303272247314453125
-          - 0.80082819046101150206595775671303272247314453125
-        confidence: 1
-        county: "county"
-        sublocality: "sublocality"
-        accuracy: "accuracy"
-        lon: 5.63737665663332876420099637471139430999755859375
-        subpremise: "subpremise"
-        quality: "quality"
-        housenumber: "housenumber"
-        street: "street"
-        neighborhood: "neighborhood"
-        place: "place"
-        postal: "postal"
-        state: "state"
+          - 37.4239419802915
+          - -122.0840496197085
+        confidence: 9
+        county: "Santa Clara County"
+        sublocality: "None"
+        accuracy: "ROOFTOP"
+        lng: -122.0853986
+        subpremise: "None"
+        quality: "street_address"
+        housenumber: "1600"
+        street: "Amphitheatre Pkwy"
+        neighborhood: "None"
+        place: "ChIJ2eUgeAK6j4ARbn5u_wAGqWA"
+        postal: "94043"
+        state: "CA"
         ok: true
-        lat: 5.962133916683182377482808078639209270477294921875
-        status: "status"
+        lat: 37.422593
+        status: "OK"
   GeoCode:
     type: "object"
     properties:
@@ -168,7 +168,7 @@ definitions:
         type: "string"
       lat:
         type: "number"
-      lon:
+      lng:
         type: "number"
       neighborhood:
         type: "string"
@@ -193,33 +193,33 @@ definitions:
       subpremise:
         type: "string"
     example:
-      country: "country"
-      address: "address"
-      postal_town: "postal_town"
-      city: "city"
-      bbox:
-        southwest:
-        - 6.02745618307040320615897144307382404804229736328125
-        - 6.02745618307040320615897144307382404804229736328125
-        northeast:
-        - 0.80082819046101150206595775671303272247314453125
-        - 0.80082819046101150206595775671303272247314453125
-      confidence: 1
-      county: "county"
-      sublocality: "sublocality"
-      accuracy: "accuracy"
-      lon: 5.63737665663332876420099637471139430999755859375
-      subpremise: "subpremise"
-      quality: "quality"
-      housenumber: "housenumber"
-      street: "street"
-      neighborhood: "neighborhood"
-      place: "place"
-      postal: "postal"
-      state: "state"
-      ok: true
-      lat: 5.962133916683182377482808078639209270477294921875
-      status: "status"
+      country: "US"
+        address: "Santa Cruz, CA, USA"
+        postal_town: "None"
+        city: "Santa Cruz"
+        bbox:
+          southwest:
+          - 37.0108489
+          - -121.9862189
+          northeast:
+          - 36.9409339
+          - -122.1087411
+        confidence: 4
+        county: "Santa Cruz County"
+        sublocality: "None"
+        accuracy: "APPROXIMATE"
+        lng: -122.0307963
+        subpremise: "None"
+        quality: "locality"
+        housenumber: "None"
+        street: "None"
+        neighborhood: "None"
+        place: "ChIJSdU2fBtEjoARhfnXKksQylI"
+        postal: "None"
+        state: "CA"
+        ok: true
+        lat: 36.9741171
+        status: "OK"
   BBox:
     type: "object"
     properties:
