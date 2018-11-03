@@ -9,206 +9,36 @@ basePath: "/geolocator"
 schemes:
 - "https"
 paths:
-  /available_currencies:
+  /locate:
     get:
-      summary: "Get an array of available currencies"
-      description: "Gets an array of the 3 letter ISO 4217 alphabetic codes for all\
-        \ available currencies."
-      operationId: "get_available_currencies"
+      summary: "Get the latitude and longitude of an address"
+      description: "Gets an object containing the lattitude and longitude of a street address"
+      operationId: "get_latitude"
       produces:
       - "application/json"
-      parameters: []
+      parameters: 
+      - in: query
+          name: address
+          schema:
+            type: string
+          description: The address to look up
       responses:
         200:
           description: "OK"
           schema:
-            $ref: "#/definitions/ISO4217s"
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /get_rates/{frm}:
-    get:
-      summary: "Get all rates against a currency."
-      description: "Gets Array of Conversion of all available currencies against the\
-        \ base currency (frm parameter)."
-      operationId: "get_get_rates_frm"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "date"
-        in: "query"
-        description: "YYYY-MM-DD format of date to check rates on."
-        required: false
-        type: "string"
-      - name: "frm"
-        in: "path"
-        description: "Base currency to get rates against."
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "OK"
-          schema:
-            $ref: "#/definitions/Conversions"
-        404:
-          description: "The specified resource was not found"
-          schema:
-            $ref: "#/definitions/Error"
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /get_rate/{frm}/{to}:
-    get:
-      summary: "Gets rate frm one currency to another."
-      description: "Returns a Conversion object with frm_amt equal to 1."
-      operationId: "get_get_rate_frm_to"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "date"
-        in: "query"
-        description: "YYYY-MM-DD format of date to check rates on"
-        required: false
-        type: "string"
-      - name: "frm"
-        in: "path"
-        description: "Three letter ISO 4217 alphabetic code for the currency that's\
-          \ being converted frm."
-        required: true
-        type: "string"
-      - name: "to"
-        in: "path"
-        description: "Three letter ISO 4217 alphabetic code for the currency that's\
-          \ being converted to."
-        required: true
-        type: "string"
-      responses:
-        200:
-          description: "OK"
-          schema:
-            $ref: "#/definitions/Conversion"
-        404:
-          description: "The specified resource was not found"
-          schema:
-            $ref: "#/definitions/Error"
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
-  /convert/{frm}/{to}/{amt}:
-    get:
-      summary: "Gives converted amount based on parameters."
-      description: "returns a Conversion object based on parameters"
-      operationId: "get_convert_frm_to_amt"
-      produces:
-      - "application/json"
-      parameters:
-      - name: "date"
-        in: "query"
-        description: "YYYY-MM-DD format of date to check rates on"
-        required: false
-        type: "string"
-      - name: "frm"
-        in: "path"
-        description: "Three letter ISO 4217 alphabetic code for the currency thats\
-          \ being converted frm."
-        required: true
-        type: "string"
-      - name: "to"
-        in: "path"
-        description: "Three letter ISO 4217 alphabetic code for the currency thats\
-          \ being converted to."
-        required: true
-        type: "string"
-      - name: "amt"
-        in: "path"
-        description: "The amount of base currency to convert frm."
-        required: true
-        type: "number"
-      responses:
-        200:
-          description: "OK"
-          schema:
-            $ref: "#/definitions/Conversion"
-        404:
-          description: "The specified resource was not found"
-          schema:
-            $ref: "#/definitions/Error"
-      x-swagger-router-controller: "swagger_server.controllers.default_controller"
+            $ref: "#/definitions/latlong"
+      x-swagger-router-controller: "swagger_server.controllers.default_controller"  
 definitions:
-  ISO4217s:
+  latlong:
     type: "object"
     required:
-    - "list_of_ISO4217s"
+    - "latitude"
+    - "longitude"
     properties:
-      list_of_ISO4217s:
-        type: "array"
-        items:
-          type: "string"
-          description: "Three letter ISO 4217 alphabetic code"
-    example:
-      list_of_ISO4217s:
-      - "USD"
-      - "CAD"
-  Conversion:
-    type: "object"
-    required:
-    - "date"
-    - "frm_amt"
-    - "frm_iso"
-    - "to_amt"
-    - "to_iso"
-    properties:
-      date:
-        type: "string"
-        description: "YYYY-MM-DD format of date the conversion data is based off of"
-      frm_iso:
-        type: "string"
-        description: "Three letter ISO 4217 alphabetic code for the currency that's\
-          \ being converted frm"
-      to_iso:
-        type: "string"
-        description: "Three letter ISO 4217 alphabetic code for the currency that's\
-          \ being converted to"
-      frm_amt:
+      latitude:
         type: "number"
-        description: "the amount of frm_iso being converted"
-      to_amt:
+      longitude:
         type: "number"
-        description: "the amount of to_iso that the amount of frm_iso converts to"
     example:
-      date: "2018-10-09"
-      frm_iso: "USD"
-      frm_amt: 1.5
-      to_iso: "CAD"
-      to_amt: 1.9494000000000002
-  Conversions:
-    type: "object"
-    required:
-    - "list_of_conversions"
-    properties:
-      list_of_conversions:
-        type: "array"
-        items:
-          $ref: "#/definitions/Conversion"
-    example:
-      list_of_conversions:
-      - date: "date"
-        frm_iso: "USD"
-        frm_amt: 1.0
-        to_iso: "CAD"
-        to_amt: 1.2996
-      - date: "date"
-        frm_iso: "USD"
-        frm_amt: 1.0
-        to_iso: "EUR"
-        to_amt: 0.8745
-  Error:
-    type: "object"
-    required:
-    - "detail"
-    - "status"
-    - "title"
-    - "type"
-    properties:
-      detail:
-        type: "string"
-      status:
-        type: "integer"
-      title:
-        type: "string"
-      type:
-        type: "string"
+      latitude: 37.434992
+      longitude: -122.130537
