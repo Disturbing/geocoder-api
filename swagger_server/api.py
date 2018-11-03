@@ -1,5 +1,4 @@
 from swagger_server.custom import CustomGoogleQuery
-from swagger_server.models.latlong import Latlong  # noqa: E501
 from swagger_server import util
 
 def csv(list):
@@ -8,6 +7,11 @@ def csv(list):
     return ','.join(map(str, list)) 
 
 class GeocoderApi(object):
-    def get_locate(self, address=None, northeast=None, southwest=None):
-        g = CustomGoogleQuery(address, bounds=f"{csv(southwest)}|{csv(northeast)}")
-        return Latlong(g.lat, g.lng)
+    def get_locate(self, location=None, region=None, bounds=None, components=None):
+        customArgs = {
+            "bounds": bounds
+        }
+
+        g = CustomGoogleQuery(location, **customArgs)
+        print(g.url)
+        return g.json
