@@ -1,13 +1,14 @@
 from swagger_server.custom import CustomGoogleQuery, CustomGoogleReverseQuery
 from swagger_server import util
+from flask import abort
 import json
 
 import geocoder 
 
 def interpretResponse(geocoderResult):
     if geocoderResult.json == None:
-        return "Make this into a 404 somehow"
-    geocoderResult.json["raw"] = None
+        abort(404)
+    del geocoderResult.json['raw']
     return geocoderResult.json
 
 class GeocoderApi(object):
