@@ -15,7 +15,7 @@ class GeocoderApi(object):
         print(g.url)
         return g.json
 
-    def get_reverse_locate(self, latitude, longitude):
-        g = geocoder.google([latitude, longitude], method='reverse')
+    def get_reverse_locate(self, latlong):
+        g = geocoder.google(latlong.split(','), method='reverse')
         print(g.url)
         return g.json
