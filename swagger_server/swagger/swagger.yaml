@@ -1,11 +1,11 @@
 ---
 swagger: "2.0"
 info:
-  description: "Geolocator API"
+  description: "Geocoder API"
   version: "1.0.0"
-  title: "Geolocator API"
+  title: "Geocoder API"
 host: "localhost:8080"
-basePath: "/geolocator"
+basePath: "/geocoder"
 schemes:
 - "https"
 paths:
