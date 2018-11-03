@@ -9,7 +9,9 @@ def csv(list):
 class GeocoderApi(object):
     def get_locate(self, location=None, region=None, bounds=None, components=None):
         customArgs = {
-            "bounds": bounds
+            "bounds": bounds,
+            "region": (region or None) and region.lower(),
+            "components": components
         }
 
         g = CustomGoogleQuery(location, **customArgs)
