@@ -38,14 +38,14 @@ paths:
           \ character to separate the coordinates. See  https://developers.google.com/maps/documentation/geocoding/intro#Viewports"
         required: false
         type: "array"
-        collectionFormat: "pipes"
         items:
           type: "string"
+        collectionFormat: "pipes"
         maxItems: 2
         minItems: 2
       - name: "components"
         in: "query"
-        description: "A list of string values specifying component restrictions.
+        description: "A list of string values specifying component restrictions. \
           \ Available filters are postal_code, country, route, locality, administrative_area.\
           \ See https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering\
           \ for reference."
@@ -57,6 +57,12 @@ paths:
       responses:
         200:
           description: "OK"
+          schema:
+            $ref: "#/definitions/GeoCodes"
+        404:
+          description: "Improperly formatted query"
+          schema:
+            $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /reverse:
     get:
@@ -70,7 +76,7 @@ paths:
         in: "query"
         description: "The latitude/longitude pair to resolve."
         required: true
-        type: "string"      
+        type: "string"
       responses:
         200:
           description: "OK"
@@ -85,6 +91,62 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/GeoCode"
+    example:
+      list_of_GeoCode:
+      - country: "country"
+        address: "address"
+        postal_town: "postal_town"
+        city: "city"
+        bbox:
+          southwest:
+          - 6.02745618307040320615897144307382404804229736328125
+          - 6.02745618307040320615897144307382404804229736328125
+          northeast:
+          - 0.80082819046101150206595775671303272247314453125
+          - 0.80082819046101150206595775671303272247314453125
+        confidence: 1
+        county: "county"
+        sublocality: "sublocality"
+        accuracy: "accuracy"
+        lon: 5.63737665663332876420099637471139430999755859375
+        subpremise: "subpremise"
+        quality: "quality"
+        housenumber: "housenumber"
+        street: "street"
+        neighborhood: "neighborhood"
+        place: "place"
+        postal: "postal"
+        state: "state"
+        ok: true
+        lat: 5.962133916683182377482808078639209270477294921875
+        status: "status"
+      - country: "country"
+        address: "address"
+        postal_town: "postal_town"
+        city: "city"
+        bbox:
+          southwest:
+          - 6.02745618307040320615897144307382404804229736328125
+          - 6.02745618307040320615897144307382404804229736328125
+          northeast:
+          - 0.80082819046101150206595775671303272247314453125
+          - 0.80082819046101150206595775671303272247314453125
+        confidence: 1
+        county: "county"
+        sublocality: "sublocality"
+        accuracy: "accuracy"
+        lon: 5.63737665663332876420099637471139430999755859375
+        subpremise: "subpremise"
+        quality: "quality"
+        housenumber: "housenumber"
+        street: "street"
+        neighborhood: "neighborhood"
+        place: "place"
+        postal: "postal"
+        state: "state"
+        ok: true
+        lat: 5.962133916683182377482808078639209270477294921875
+        status: "status"
   GeoCode:
     type: "object"
     properties:
@@ -130,6 +192,34 @@ definitions:
         type: "string"
       subpremise:
         type: "string"
+    example:
+      country: "country"
+      address: "address"
+      postal_town: "postal_town"
+      city: "city"
+      bbox:
+        southwest:
+        - 6.02745618307040320615897144307382404804229736328125
+        - 6.02745618307040320615897144307382404804229736328125
+        northeast:
+        - 0.80082819046101150206595775671303272247314453125
+        - 0.80082819046101150206595775671303272247314453125
+      confidence: 1
+      county: "county"
+      sublocality: "sublocality"
+      accuracy: "accuracy"
+      lon: 5.63737665663332876420099637471139430999755859375
+      subpremise: "subpremise"
+      quality: "quality"
+      housenumber: "housenumber"
+      street: "street"
+      neighborhood: "neighborhood"
+      place: "place"
+      postal: "postal"
+      state: "state"
+      ok: true
+      lat: 5.962133916683182377482808078639209270477294921875
+      status: "status"
   BBox:
     type: "object"
     properties:
@@ -143,6 +233,13 @@ definitions:
         items:
           type: "number"
           description: "array of [latitude, longitude]"
+    example:
+      southwest:
+      - 6.02745618307040320615897144307382404804229736328125
+      - 6.02745618307040320615897144307382404804229736328125
+      northeast:
+      - 0.80082819046101150206595775671303272247314453125
+      - 0.80082819046101150206595775671303272247314453125
   Error:
     type: "object"
     required:
