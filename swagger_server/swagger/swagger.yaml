@@ -1,11 +1,11 @@
 ---
 swagger: "2.0"
 info:
-  description: "Forex API"
+  description: "Geolocator API"
   version: "1.0.0"
-  title: "Currency Converter"
+  title: "Geolocator API"
 host: "localhost:8080"
-basePath: "/forex"
+basePath: "/geolocator"
 schemes:
 - "https"
 paths:

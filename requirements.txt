@@ -11,7 +11,7 @@ coverage==4.5.1
 decorator==4.3.0
 Flask==1.0.2
 Flask-Testing==0.6.1
-forex-python==1.1
+geocoder==1.17.3
 idna==2.7
 inflection==0.3.1
 ipython==7.0.1
