@@ -24,7 +24,7 @@ def get_forward(location, region=None, bounds=None, components=None):  # noqa: E
     return api.get_locate(location, region, bounds, components)
 
 
-def get_reverse(latlong):  # noqa: E501
+def get_reverse(latlong, result_type=None):  # noqa: E501
     """Reverse geocoding
 
     Does reverse geocoding # noqa: E501
@@ -34,4 +34,4 @@ def get_reverse(latlong):  # noqa: E501
 
     :rtype: None
     """
-    return api.get_reverse_locate(latlong)
+    return api.get_reverse_locate(latlong, result_type)

@@ -70,7 +70,15 @@ paths:
         in: "query"
         description: "The latitude/longitude pair to resolve."
         required: true
-        type: "string"      
+        type: "string"
+      - name: "result_type"
+        in: "query"
+        description: "An optional set of result_types to retrieve. See https://developers.google.com/maps/documentation/geocoding/intro#reverse-restricted for details"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "pipes"      
       responses:
         200:
           description: "OK"
