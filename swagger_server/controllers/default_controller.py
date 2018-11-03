@@ -16,5 +16,5 @@ def get_latitude(address=None):  # noqa: E501
 
     :rtype: Latlong
     """
-    g = geocoder.google('Mountain View, CA')
+    g = geocoder.google(address)
     return Latlong(g.lat, g.lng)
