@@ -88,6 +88,12 @@ paths:
       responses:
         200:
           description: "OK"
+          schema:
+            $ref: "#/definitions/GeoCodes"
+        404:
+          description: "Improperly formatted query"
+          schema:
+            $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   GeoCodes:
