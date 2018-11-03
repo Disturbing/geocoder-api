@@ -38,14 +38,14 @@ paths:
           \ character to separate the coordinates. See  https://developers.google.com/maps/documentation/geocoding/intro#Viewports"
         required: false
         type: "array"
-        collectionFormat: "pipes"
         items:
           type: "string"
+        collectionFormat: "pipes"
         maxItems: 2
         minItems: 2
       - name: "components"
         in: "query"
-        description: "A list of string values specifying component restrictions.
+        description: "A list of string values specifying component restrictions. \
           \ Available filters are postal_code, country, route, locality, administrative_area.\
           \ See https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering\
           \ for reference."
@@ -57,6 +57,12 @@ paths:
       responses:
         200:
           description: "OK"
+          schema:
+            $ref: "#/definitions/GeoCodes"
+        404:
+          description: "Improperly formatted query"
+          schema:
+            $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /reverse:
     get:
@@ -93,6 +99,62 @@ definitions:
         type: "array"
         items:
           $ref: "#/definitions/GeoCode"
+    example:
+      list_of_GeoCode:
+      - country: "US"
+        address: "Santa Cruz, CA, USA"
+        postal_town: "None"
+        city: "Santa Cruz"
+        bbox:
+          southwest:
+          - 37.0108489
+          - -121.9862189
+          northeast:
+          - 36.9409339
+          - -122.1087411
+        confidence: 4
+        county: "Santa Cruz County"
+        sublocality: "None"
+        accuracy: "APPROXIMATE"
+        lng: -122.0307963
+        subpremise: "None"
+        quality: "locality"
+        housenumber: "None"
+        street: "None"
+        neighborhood: "None"
+        place: "ChIJSdU2fBtEjoARhfnXKksQylI"
+        postal: "None"
+        state: "CA"
+        ok: true
+        lat: 36.9741171
+        status: "OK"
+      - country: "US"
+        address: "1600 Amphitheatre Pkwy, Mountain View, CA 94043, USA"
+        postal_town: "None"
+        city: "Mountain View"
+        bbox:
+          southwest:
+          - 37.4212440197085
+          - -122.0867475802915
+          northeast:
+          - 37.4239419802915
+          - -122.0840496197085
+        confidence: 9
+        county: "Santa Clara County"
+        sublocality: "None"
+        accuracy: "ROOFTOP"
+        lng: -122.0853986
+        subpremise: "None"
+        quality: "street_address"
+        housenumber: "1600"
+        street: "Amphitheatre Pkwy"
+        neighborhood: "None"
+        place: "ChIJ2eUgeAK6j4ARbn5u_wAGqWA"
+        postal: "94043"
+        state: "CA"
+        ok: true
+        lat: 37.422593
+        status: "OK"
   GeoCode:
     type: "object"
     properties:
@@ -114,7 +176,7 @@ definitions:
         type: "string"
       lat:
         type: "number"
-      lon:
+      lng:
         type: "number"
       neighborhood:
         type: "string"
@@ -138,6 +200,34 @@ definitions:
         type: "string"
       subpremise:
         type: "string"
+    example:
+      country: "US"
+      address: "Santa Cruz, CA, USA"
+      postal_town: "None"
+      city: "Santa Cruz"
+      bbox:
+        southwest:
+        - 37.0108489
+        - -121.9862189
+        northeast:
+        - 36.9409339
+        - -122.1087411
+      confidence: 4
+      county: "Santa Cruz County"
+      sublocality: "None"
+      accuracy: "APPROXIMATE"
+      lng: -122.0307963
+      subpremise: "None"
+      quality: "locality"
+      housenumber: "None"
+      street: "None"
+      neighborhood: "None"
+      place: "ChIJSdU2fBtEjoARhfnXKksQylI"
+      postal: "None"
+      state: "CA"
+      ok: true
+      lat: 36.9741171
+      status: "OK"
   BBox:
     type: "object"
     properties:
@@ -151,6 +241,13 @@ definitions:
         items:
           type: "number"
           description: "array of [latitude, longitude]"
+    example:
+      southwest:
+      - 37.4212440197085
+      - -122.0867475802915
+      northeast:
+      - 37.4239419802915
+      - -122.0840496197085
   Error:
     type: "object"
     required:
