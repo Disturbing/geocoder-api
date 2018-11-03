@@ -22,7 +22,7 @@ paths:
         description: "A string value of the location you are geocoding. See 
 https://developers.google.com/maps/faq#geocoder_queryformat\
           \ for reference."
-        required: false
+        required: true
         type: "string"
       - name: "region"
         in: "query"
