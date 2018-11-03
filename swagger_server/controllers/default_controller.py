@@ -1,8 +1,7 @@
 import connexion
 import six
-import geocoder
-from geocoder.google import GoogleQuery
 
+from swagger_server.custom import CustomGoogleQuery
 from swagger_server.models.latlong import Latlong  # noqa: E501
 from swagger_server import util
 
@@ -21,7 +20,7 @@ def get_locate(address=None, northeast=None, southwest=None):  # noqa: E501
 
     :rtype: Latlong
     """
-    g = GoogleQuery(address)
+    g = CustomGoogleQuery(address)
     # if northeast != None and southwest != None:
     #     g.bbox{"northeast": northeast, "southwest": southwest}
     return Latlong(g.lat, g.lng)
