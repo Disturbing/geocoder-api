@@ -17,10 +17,9 @@ paths:
       produces:
       - "application/json"
       parameters: 
-      - in: query
+        - in: query
           name: address
-          schema:
-            type: string
+          type: string
           description: The address to look up
       responses:
         200:

@@ -4,6 +4,7 @@ import six
 from swagger_server.models.latlong import Latlong  # noqa: E501
 from swagger_server import util
 
+import geocoder
 
 def get_latitude(address=None):  # noqa: E501
     """Get the latitude and longitude of an address
@@ -15,4 +16,5 @@ def get_latitude(address=None):  # noqa: E501
 
     :rtype: Latlong
     """
-    return 'do some magic!'
+    g = geocoder.google('Mountain View, CA')
+    return Latlong(g.lat, g.lng)
