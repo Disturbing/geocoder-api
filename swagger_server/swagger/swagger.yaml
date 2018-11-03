@@ -44,7 +44,7 @@ https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
       - name: "components"
         in: "query"
         description: "A list of string values specifying component restrictions.
-          \ (|). Available filters are postal_code, country, route, locality, administrative_area.\
+          \ Available filters are postal_code, country, route, locality, administrative_area.\
           \ See https://developers.google.com/maps/documentation/geocoding/intro#ComponentFiltering\
           \ for reference."
         required: false
@@ -52,6 +52,8 @@ https://developers.google.com/maps/documentation/geocoding/intro#Viewports\
         items:
           type: "string"
         collectionFormat: "pipes"
+        example:
+          - "country:GB"
       responses:
         200:
           description: "OK"
