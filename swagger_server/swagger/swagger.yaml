@@ -33,19 +33,14 @@ https://developers.google.com/maps/faq#geocoder_queryformat\
         type: "string"
       - name: "bounds"
         in: "query"
-        description: "The south-west and north-east coordinates defining a box to search within\
+        description: "The south-west and north-east lat/long points defining a box to search within\
           \ See https://developers.google.com/maps/documentation/geocoding/intro#Viewports
           \ for reference."
         required: false
         type: "array"
         collectionFormat: "pipes"
         items:
-          items:
-            type: "number"
-          type: "array"
-          collectionFormat: "csv"
-          maxItems: 2
-          minItems: 2
+          type: "string"
         maxItems: 2
         minItems: 2
       - name: "components"
