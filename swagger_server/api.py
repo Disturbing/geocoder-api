@@ -4,7 +4,5 @@ from swagger_server import util
 
 class GeocoderApi(object):
     def get_locate(self, address=None, northeast=None, southwest=None):
-        g = CustomGoogleQuery(address)
-        # if northeast != None and southwest != None:
-        #     g.bbox{"northeast": northeast, "southwest": southwest}
+        g = CustomGoogleQuery(address, northeast=northeast, southwest=southwest)
         return Latlong(g.lat, g.lng)
