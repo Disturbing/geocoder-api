@@ -77,6 +77,14 @@ paths:
         description: "The latitude/longitude pair to resolve."
         required: true
         type: "string"
+      - name: "result_type"
+        in: "query"
+        description: "An optional set of result_types to retrieve. See https://developers.google.com/maps/documentation/geocoding/intro#reverse-restricted for details"
+        required: false
+        type: "array"
+        items:
+          type: "string"
+        collectionFormat: "pipes"      
       responses:
         200:
           description: "OK"
@@ -194,32 +202,32 @@ definitions:
         type: "string"
     example:
       country: "US"
-        address: "Santa Cruz, CA, USA"
-        postal_town: "None"
-        city: "Santa Cruz"
-        bbox:
-          southwest:
-          - 37.0108489
-          - -121.9862189
-          northeast:
-          - 36.9409339
-          - -122.1087411
-        confidence: 4
-        county: "Santa Cruz County"
-        sublocality: "None"
-        accuracy: "APPROXIMATE"
-        lng: -122.0307963
-        subpremise: "None"
-        quality: "locality"
-        housenumber: "None"
-        street: "None"
-        neighborhood: "None"
-        place: "ChIJSdU2fBtEjoARhfnXKksQylI"
-        postal: "None"
-        state: "CA"
-        ok: true
-        lat: 36.9741171
-        status: "OK"
+      address: "Santa Cruz, CA, USA"
+      postal_town: "None"
+      city: "Santa Cruz"
+      bbox:
+        southwest:
+        - 37.0108489
+        - -121.9862189
+        northeast:
+        - 36.9409339
+        - -122.1087411
+      confidence: 4
+      county: "Santa Cruz County"
+      sublocality: "None"
+      accuracy: "APPROXIMATE"
+      lng: -122.0307963
+      subpremise: "None"
+      quality: "locality"
+      housenumber: "None"
+      street: "None"
+      neighborhood: "None"
+      place: "ChIJSdU2fBtEjoARhfnXKksQylI"
+      postal: "None"
+      state: "CA"
+      ok: true
+      lat: 36.9741171
+      status: "OK"
   BBox:
     type: "object"
     properties:
@@ -235,11 +243,11 @@ definitions:
           description: "array of [latitude, longitude]"
     example:
       southwest:
-      - 6.02745618307040320615897144307382404804229736328125
-      - 6.02745618307040320615897144307382404804229736328125
+      - 37.4212440197085
+      - -122.0867475802915
       northeast:
-      - 0.80082819046101150206595775671303272247314453125
-      - 0.80082819046101150206595775671303272247314453125
+      - 37.4239419802915
+      - -122.0840496197085
   Error:
     type: "object"
     required:
