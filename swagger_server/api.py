@@ -1,5 +1,6 @@
 from swagger_server.custom import CustomGoogleQuery, CustomGoogleReverseQuery
 from swagger_server import util
+from swagger_server.models.error import Error
 from flask import abort
 import json
 
@@ -7,9 +8,9 @@ import geocoder
 
 def interpretResponse(geocoderResult):
     if geocoderResult.json == None:
-        abort(404)
+        return Error("No location found matching query", 404, "Not found"), 404
     del geocoderResult.json['raw']
-    return geocoderResult.json
+    return geocoderResult.json, 200
 
 class GeocoderApi(object):
     def get_locate(self, location, region=None, bounds=None, components=None):
