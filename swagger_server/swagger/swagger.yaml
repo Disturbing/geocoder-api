@@ -63,6 +63,10 @@ paths:
           description: "Improperly formatted query"
           schema:
             $ref: "#/definitions/Error"
+        404:
+          description: "No results found"
+            schema:
+          $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /reverse:
     get:
@@ -94,6 +98,10 @@ paths:
           description: "Improperly formatted query"
           schema:
             $ref: "#/definitions/Error"
+        404:
+          description: "No results found"
+            schema:
+          $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   GeoCodes:
