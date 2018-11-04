@@ -65,8 +65,8 @@ paths:
             $ref: "#/definitions/Error"
         404:
           description: "No results found"
-            schema:
-          $ref: "#/definitions/Error"
+          schema:
+            $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
   /reverse:
     get:
@@ -100,8 +100,8 @@ paths:
             $ref: "#/definitions/Error"
         404:
           description: "No results found"
-            schema:
-          $ref: "#/definitions/Error"
+          schema:
+            $ref: "#/definitions/Error"
       x-swagger-router-controller: "swagger_server.controllers.default_controller"
 definitions:
   GeoCodes:
