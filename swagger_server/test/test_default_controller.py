@@ -93,34 +93,32 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
+    def test_get_forward_components(self):
+        """Test case for get_forward with components
+
+        Forward geocoding
+        """
+        # no component
+        query_string = [('location', 'high+st+hasting')]
+        response = self.client.open(
+            '/geocoder/forward',
+            method='GET',
+            query_string=query_string)
+        assert json.loads(response.data.decode('utf-8'))["country"] == "US"
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+        # component
+        query_string = [('location', 'high+st+hasting'), ('components', 'country:GB')]
+        response = self.client.open(
+            '/geocoder/forward',
+            method='GET',
+            query_string=query_string)
+        assert json.loads(response.data.decode('utf-8'))["country"] == "GB"
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
 
 
-    # def test_get_forward_components(self):
-    #     """Test case for get_forward with components
-
-    #     Forward geocoding
-    #     """
-    #     query_string = [('location', 'location_example'),
-    #                     ('components', 'components_example')]
-    #     response = self.client.open(
-    #         '/geocoder/forward',
-    #         method='GET',
-    #         query_string=query_string)
-    #     self.assert200(response,
-    #                    'Response body is : ' + response.data.decode('utf-8'))
-
-    # def test_get_reverse(self):
-    #     """Test case for get_reverse
-
-    #     Reverse geocoding
-    #     """
-    #     query_string = [('latlong', 'latlong_example')]
-    #     response = self.client.open(
-    #         '/geocoder/reverse',
-    #         method='GET',
-    #         query_string=query_string)
-    #     self.assert200(response,
-    #                    'Response body is : ' + response.data.decode('utf-8'))
     def test_get_reverse_with_valid_input_returns_200_with_location(self):
         query_string = [('latlong', '38.438102,-94.226957')]
         response = self.client.open(
