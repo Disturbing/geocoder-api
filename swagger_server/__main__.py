@@ -7,7 +7,7 @@ from swagger_server import encoder
 
 
 def main():
-    if os.environ.get('KEY_THAT_MIGHT_EXIST') == None:
+    if os.environ.get('GOOGLE_API_KEY') == None:
         print("The environment variable \"GOOGLE_API_KEY\" is not set.\nPlease set your API key and try again")
         exit()
 
