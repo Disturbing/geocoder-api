@@ -89,11 +89,7 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_get_reverse(self):
-        """Test case for get_reverse
-
-        Reverse geocoding
-        """
+    def test_get_reverse_with_valid_input_returns_200_with_location(self):
         query_string = [('latlong', '38.438102,-94.226957')]
         response = self.client.open(
             '/geocoder/reverse',
@@ -102,6 +98,24 @@ class TestDefaultController(BaseTestCase):
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
         assert json.loads(response.data.decode('utf-8'))["city"] == "Garden City"
+
+    def test_get_reverse_with_valid_input_returns_204_with_nowhere_location(self):
+        query_string = [('latlong', '1,1')]
+        response = self.client.open(
+            '/geocoder/reverse',
+            method='GET',
+            query_string=query_string)
+        self.assert404(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_get_reverse_with_valid_input_returns_204_with_nonsense_location(self):
+        query_string = [('latlong', '10000,1')]
+        response = self.client.open(
+            '/geocoder/reverse',
+            method='GET',
+            query_string=query_string)
+        self.assert400(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
 
 if __name__ == '__main__':
     import unittest
