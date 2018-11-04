@@ -129,9 +129,9 @@ class TestDefaultController(BaseTestCase):
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
-        assert json.loads(response.data.decode('utf-8'))["city"] == "Garden City"
+        assert json.loads(response.data.decode('utf-8'))["address"] == "NE County Rd 15004, Garden City, MO 64747, USA"
 
-    def test_get_reverse_with_valid_input_returns_204_with_nowhere_location(self):
+    def test_get_reverse_returns_404_with_nowhere_location(self):
         query_string = [('latlong', '1,1')]
         response = self.client.open(
             '/geocoder/reverse',
@@ -140,8 +140,27 @@ class TestDefaultController(BaseTestCase):
         self.assert404(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_get_reverse_with_valid_input_returns_204_with_nonsense_location(self):
+    def test_get_reverse_returns_400_with_nonsense_location(self):
         query_string = [('latlong', '10000,1')]
+        response = self.client.open(
+            '/geocoder/reverse',
+            method='GET',
+            query_string=query_string)
+        self.assert400(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+
+    def test_get_reverse_respects_type(self):
+        query_string = [('latlong', '38.438102,-94.226957'), ('result_type', 'political')]
+        response = self.client.open(
+            '/geocoder/reverse',
+            method='GET',
+            query_string=query_string)
+        self.assert200(response,
+                       'Response body is : ' + response.data.decode('utf-8'))
+        assert json.loads(response.data.decode('utf-8'))["address"] == "Grand River Township, MO, USA"
+
+    def test_get_reverse_reports_upstream_400(self):
+        query_string = [('latlong', '38.438102,-94.226957'), ('result_type', 'somecompletelyinvalidvalue')]
         response = self.client.open(
             '/geocoder/reverse',
             method='GET',

@@ -13,7 +13,7 @@ def interpretResponse(geocoderResult):
         return Error("Exceeded daily limit - OVER_DAILY_LIMIT", 420, "Rate limited"), 420
     if geocoderResult.status == "ZERO_RESULTS":
         return Error("No locations found matching query - ZERO_RESULTS", 404, "Not found"), 404
-    if geocoderResult.status == "INVALID_REQUEST":
+    if geocoderResult.status == "INVALID_REQUEST" or geocoderResult.status.startswith("ERROR - 400"):
         return Error("Request to maps API was invalid - INVALID_REQUEST", 400, "Bad request"), 400
     if geocoderResult.status != "OK":
         return Error(f"Unkown error with status={geocoderResult.status}", 500, "Internal server error"), 500
