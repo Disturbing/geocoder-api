@@ -8,6 +8,8 @@ from six import BytesIO
 from swagger_server.models.error import Error  # noqa: E501
 from swagger_server.test import BaseTestCase
 
+import json
+
 class TestDefaultController(BaseTestCase):
     """DefaultController integration test stubs"""
 
@@ -92,14 +94,14 @@ class TestDefaultController(BaseTestCase):
 
         Reverse geocoding
         """
-        query_string = [('latlong', 'latlong_example')]
+        query_string = [('latlong', '38.438102,-94.226957')]
         response = self.client.open(
             '/geocoder/reverse',
             method='GET',
             query_string=query_string)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
-
+        assert json.loads(response.data.decode('utf-8'))["city"] == "Garden City"
 
 if __name__ == '__main__':
     import unittest
