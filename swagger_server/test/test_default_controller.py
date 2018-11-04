@@ -29,15 +29,14 @@ class TestDefaultController(BaseTestCase):
 
         Forward geocoding
         """
-        query_string = [('location', 'location_example'),
-                        ('region', 'region_example'),
+        query_string = [('region', 'region_example'),
                         ('bounds', 'bounds_example'),
                         ('components', 'components_example')]
         response = self.client.open(
             '/geocoder/forward',
             method='GET',
             query_string=query_string)
-        self.assert200(response,
+        self.assert400(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
     def test_get_forward_region(self):
@@ -45,60 +44,59 @@ class TestDefaultController(BaseTestCase):
 
         Forward geocoding
         """
-        query_string = [('location', 'location_example'),
-                        ('region', 'region_example'),
-                        ('bounds', 'bounds_example'),
-                        ('components', 'components_example')]
+        query_string = [('location', 'santa cruz'),
+                        ('region', 'es')]
         response = self.client.open(
             '/geocoder/forward',
             method='GET',
             query_string=query_string)
+        self.assert(response.)
         self.assert200(response,
                        'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_get_forward_bounds(self):
-        """Test case for get_forward with bounds
+    # def test_get_forward_bounds(self):
+    #     """Test case for get_forward with bounds
 
-        Forward geocoding
-        """
-        query_string = [('location', 'location_example'),
-                        ('region', 'region_example'),
-                        ('bounds', 'bounds_example'),
-                        ('components', 'components_example')]
-        response = self.client.open(
-            '/geocoder/forward',
-            method='GET',
-            query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+    #     Forward geocoding
+    #     """
+    #     query_string = [('location', 'location_example'),
+    #                     ('region', 'region_example'),
+    #                     ('bounds', 'bounds_example'),
+    #                     ('components', 'components_example')]
+    #     response = self.client.open(
+    #         '/geocoder/forward',
+    #         method='GET',
+    #         query_string=query_string)
+    #     self.assert200(response,
+    #                    'Response body is : ' + response.data.decode('utf-8'))
 
 
-    def test_get_forward_components(self):
-        """Test case for get_forward with components
+    # def test_get_forward_components(self):
+    #     """Test case for get_forward with components
 
-        Forward geocoding
-        """
-        query_string = [('location', 'location_example'),
-                        ('components', 'components_example')]
-        response = self.client.open(
-            '/geocoder/forward',
-            method='GET',
-            query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+    #     Forward geocoding
+    #     """
+    #     query_string = [('location', 'location_example'),
+    #                     ('components', 'components_example')]
+    #     response = self.client.open(
+    #         '/geocoder/forward',
+    #         method='GET',
+    #         query_string=query_string)
+    #     self.assert200(response,
+    #                    'Response body is : ' + response.data.decode('utf-8'))
 
-    def test_get_reverse(self):
-        """Test case for get_reverse
+    # def test_get_reverse(self):
+    #     """Test case for get_reverse
 
-        Reverse geocoding
-        """
-        query_string = [('latlong', 'latlong_example')]
-        response = self.client.open(
-            '/geocoder/reverse',
-            method='GET',
-            query_string=query_string)
-        self.assert200(response,
-                       'Response body is : ' + response.data.decode('utf-8'))
+    #     Reverse geocoding
+    #     """
+    #     query_string = [('latlong', 'latlong_example')]
+    #     response = self.client.open(
+    #         '/geocoder/reverse',
+    #         method='GET',
+    #         query_string=query_string)
+    #     self.assert200(response,
+    #                    'Response body is : ' + response.data.decode('utf-8'))
 
 
 if __name__ == '__main__':
