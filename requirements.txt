@@ -11,7 +11,9 @@ coverage==4.5.1
 decorator==4.3.0
 Flask==1.0.2
 Flask-Testing==0.6.1
-geocoder==1.17.3
+future==0.17.1
+geocoder==1.38.1
+googlemaps==3.0.2
 idna==2.7
 inflection==0.3.1
 ipython==7.0.1
@@ -35,6 +37,7 @@ pytest==3.8.2
 python-dateutil==2.6.0
 PyYAML==3.13
 randomize==0.14
+ratelim==0.1.6
 requests==2.19.1
 simplegeneric==0.8.1
 simplejson==3.16.0
