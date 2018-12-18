@@ -5,6 +5,11 @@ import os
 
 from swagger_server import encoder
 
+try:
+    PORT = os.environ["GEOCODER_PORT"]
+except KeyError:
+    raise ValueError("Must have environment variable FOREX_PORT defined to run this server")
+
 
 def main():
     if os.environ.get('GOOGLE_API_KEY') == None:
