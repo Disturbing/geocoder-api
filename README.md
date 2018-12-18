@@ -89,4 +89,4 @@ curl -X GET --header 'Accept: application/json' 'http://localhost:8080/geocoder/
 
 ## Note
 
-This API makes use of the Google Geocoding API. For error responses not documented in the Swagger documentation, see the (linked)[https://developers.google.com/maps/documentation/geocoding/intro#StatusCodes] Google documentation.
+This API makes use of the Google Geocoding API. For error responses not documented in the Swagger documentation, see the [linked](https://developers.google.com/maps/documentation/geocoding/intro#StatusCodes) Google documentation.
