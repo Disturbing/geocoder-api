@@ -9,6 +9,8 @@ This example uses the [Connexion](https://github.com/zalando/connexion) library 
 
 ## Requirements
 Python 3.5.2+
+Ensure the port you want to run on is defined in your environment as a variable named GEOCODER\_PORT.
+Ensure the your Google API key is defined in your environment as a variable named GOOGLE\_API\_KEY.
 
 ## Usage
 To run the server, please execute the following from the root directory:
@@ -41,8 +43,50 @@ To run the server on a Docker container, please execute the following from the r
 
 ```bash
 # building the image
-docker build -t swagger_server .
+docker build --build-arg GEOCODER_PORT=$GEOCODER_PORT GOOGLE_API_KEY=$GOOGLE_API_KEY -t geocoder_server ./
 
 # starting up a container
-docker run -p 8080:8080 swagger_server
+docker run -p $GEOCODER_PORT:$GEOCODER_PORT geocoder_server
 ```
+
+## Example Request/Response
+
+To generate more example curl commands, go to http://localhost:8080/geocoder/ui/ and click through the interface.
+
+#### request
+```bash
+curl -X GET --header 'Accept: application/json' 'http://localhost:8080/geocoder/forwd?location=San%20Francisco'
+```
+
+#### response:
+```json
+{
+  "accuracy": "APPROXIMATE",
+  "address": "San Francisco, CA, USA",
+  "bbox": {
+    "northeast": [
+      37.812,
+      -122.3482
+    ],
+    "southwest": [
+      37.70339999999999,
+      -122.527
+    ]
+  },
+  "city": "SF",
+  "confidence": 3,
+  "country": "US",
+  "county": "San Francisco County",
+  "lat": 37.7749295,
+  "lng": -122.4194155,
+  "ok": true,
+  "place": "ChIJIQBpAG2ahYAR_6128GcTUEo",
+  "quality": "locality",
+  "state": "CA",
+  "status": "OK"
+}
+```
+
+## Note
+
+This API makes use of the Google Geocoding API. For error responses not documented in the Swagger documentation, see the (linked)[https://developers.google.com/maps/documentation/geocoding/intro#StatusCodes] Google documentation.
