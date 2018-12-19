@@ -10,6 +10,7 @@ This example uses the [Connexion](https://github.com/zalando/connexion) library 
 ## Requirements
 Python 3.5.2+
 Ensure the port you want to run on is defined in your environment as a variable named GEOCODER\_PORT.
+Ensure the host url you want to run on is defined in your environment as a variable named GEOCODER\_HOST.
 Ensure the your Google API key is defined in your environment as a variable named GOOGLE\_API\_KEY.
 
 ## Usage
@@ -43,7 +44,7 @@ To run the server on a Docker container, please execute the following from the r
 
 ```bash
 # building the image
-docker build --build-arg GEOCODER_PORT=$GEOCODER_PORT GOOGLE_API_KEY=$GOOGLE_API_KEY -t geocoder_server ./
+docker build --build-arg GEOCODER_PORT=$GEOCODER_PORT --build-arg GEOCODER_HOST=$GEOCODER_HOST --build-arg GOOGLE_API_KEY=$GOOGLE_API_KEY -t geocoder_server ./
 
 # starting up a container
 docker run -p $GEOCODER_PORT:$GEOCODER_PORT geocoder_server
