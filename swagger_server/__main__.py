@@ -8,12 +8,12 @@ from swagger_server import encoder
 try:
     PORT = os.environ["GEOCODER_PORT"]
 except KeyError:
-    raise ValueError("Must have environment variable FOREX_PORT defined to run this server")
+    raise ValueError("Must have environment variable GEOCODER_PORT defined to run this server")
 
 try:
     HOST = os.environ["GEOCODER_HOST"]
 except KeyError:
-    raise ValueError("Must have environment variable FOREX_PORT defined to run this server")
+    raise ValueError("Must have environment variable GEOCODER_PORT defined to run this server")
 
 
 def main():
