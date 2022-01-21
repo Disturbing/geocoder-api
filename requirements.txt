@@ -16,7 +16,7 @@ geocoder==1.38.1
 googlemaps==3.0.2
 idna==2.7
 inflection==0.3.1
-ipython==7.0.1
+ipython==7.16.3
 ipython-genutils==0.2.0
 itsdangerous==0.24
 jedi==0.13.1
